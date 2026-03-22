@@ -290,13 +290,13 @@ button:active {
 <div id="photos" class="page">
   <h2 style="font-family: 'Dancing Script', cursive; font-size: 42px; color: #d64a73; margin-bottom: 30px;">📸 Your Beautiful Pictures (So you knoow I made it for you not stollen form github)  </h2>
   <div class="gallery">
-    <div class="photo" style="background-image: url('./images/memory1.png');" title="Memory 1"></div>
-    <div class="photo" style="background-image: url('./images/memory2.png');" title="Memory 2"></div>
-    <div class="photo" style="background-image: url('./images/memory3.png');" title="Memory 3"></div>
-    <div class="photo" style="background-image: url('./images/memory4.png');" title="Memory 4"></div>
-    <div class="photo" style="background-image: url('./images/memory5.png');" title="Memory 5"></div>
-    <div class="photo" style="background-image: url('./images/memory6.png');" title="Memory 6"></div>
-    <div class="photo" style="background-image: url('./images/memory7.png');" title="Memory 7"></div>
+    <div class="photo" style="background-image: url('./memory1.png');" title="Memory 1"></div>
+    <div class="photo" style="background-image: url('./memory2.png');" title="Memory 2"></div>
+    <div class="photo" style="background-image: url('./memory3.png');" title="Memory 3"></div>
+    <div class="photo" style="background-image: url('./memory4.png');" title="Memory 4"></div>
+    <div class="photo" style="background-image: url('./memory5.png');" title="Memory 5"></div>
+    <div class="photo" style="background-image: url('./memory6.png');" title="Memory 6"></div>
+    <div class="photo" style="background-image: url('./memory7.png');" title="Memory 7"></div>
   </div>
   <button onclick="go('appreciation')">Next</button>
 </div>
@@ -346,8 +346,6 @@ function go(id){
   }
 }
 
-// ========== TYPING ANIMATION EFFECT ==========
-// Displays text character by character for dramatic effect
 const text = "Hey Raashi,I wasn’t sure if I should write again, but I realized I’d rather be honest than stay quiet and wonder “what if.”The truth is, something about you stayed with me.It wasn’t just how you look (though I do think you’re genuinely beautiful), it was your energy the way you carried yourself, the way talking to you felt so easy and real. That’s rare for me. I don’t connect with people like that often, and I think that’s why I can’t just brush this off like it meant nothing.I’ve replayed those moments in my head more times than I’d like to admit. Not because I’m stuck in the past, but because I remember how genuinely happy I felt in that short time. And that kind of feeling is hard to ignore.I’ll be honest I didn’t handle things perfectly. Maybe I hesitated, maybe I overthought, maybe I didn’t respond the way I should have. But I’ve thought about it since, and I didn’t want to be the kind of person who lets something meaningful slip away just because of fear.So here I am, choosing to say it clearly:I like you.And I don’t want to regret not saying that.I’m not expecting anything from you. No pressure, no big expectations. If you don’t feel the same, I’ll respect that completely. But if there’s even a small part of you that would be open to talking again, I’d really like that.It doesn’t have to be anything serious  it could just be a simple conversation. Tell me about your day, something random, something that made you laugh. I’d genuinely enjoy that.And if you’d rather not reply at all, that’s okay too. I’ll still be glad that I got to meet you, even if it was brief.Either way, I hope you’re doing well and life’s been kind to you.Take care,too big of a pussy to write my name ";
 let i = 0;
 
@@ -373,8 +371,6 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 });
 
-// ========== MUSIC PLAYER CONTROL ==========
-// Toggle between play and pause with visual feedback
 function toggleMusic(){
   try {
     let song = document.getElementById('song');
@@ -393,7 +389,6 @@ function toggleMusic(){
   }
 }
 
-// Autoplay music when page loads (with user interaction requirement)
 window.addEventListener('load', function(){
   try {
     let song = document.getElementById('song');
@@ -411,8 +406,6 @@ window.addEventListener('load', function(){
   }
 });
 
-// ========== EASTER EGG - HIDDEN MESSAGE ==========
-// Reveal secret message when clicking the star
 function reveal(){
   try {
     alert("If you found this, and wanna know who I am, I am not your ex nor your friend.");
@@ -420,8 +413,6 @@ function reveal(){
     console.error('Reveal error:', err);
   }
 }
-// ========== FINAL MESSAGE REVEAL ==========
-// Show the final touching message
 function finalMessage(){
   try {
     const finalElement = document.getElementById('final');
