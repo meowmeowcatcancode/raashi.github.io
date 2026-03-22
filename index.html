@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You</title>
+
+<!-- Google Fonts for beautiful typography -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+/* GLOBAL STYLES */
+body {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(135deg, #ffe4e1, #fff5e6);
+  overflow-x: hidden;
+}
+
+/* Page containers - hidden by default, shown with .active class */
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 40px;
+  text-align: center;
+  animation: fade 1s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Show active page */
+.active { display: flex !important; animation: fadeIn 0.6s ease; }
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Fade-in animation for smooth transitions */
+@keyframes fade {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px);
+  } 
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  } 
+}
+
+/* Pulse animation for floating effects */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Button styling - consistent design across all pages */
+button {
+  padding: 12px 28px;
+  border: none;
+  background: linear-gradient(135deg, #f8c8dc, #ffb6c1);
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(248, 200, 220, 0.3);
+  margin-top: 20px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Button hover effect */
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(248, 200, 220, 0.6);
+  background: linear-gradient(135deg, #ffb6c1, #f8c8dc);
+}
+
+/* Button active effect */
+button:active {
+  transform: translateY(-1px);
+}
+
+/* HOME PAGE */
+#home {
+  background: linear-gradient(135deg, #ffe4e1, #fff5e6);
+}
+
+#home h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 56px;
+  color: #d64a73;
+  margin-bottom: 20px;
+  animation: pulse 2.5s infinite, glow 3s ease-in-out infinite;
+  text-shadow: 0 2px 10px rgba(214, 74, 115, 0.2);
+}
+
+@keyframes glow {
+  0%, 100% { text-shadow: 0 2px 10px rgba(214, 74, 115, 0.2); }
+  50% { text-shadow: 0 4px 20px rgba(214, 74, 115, 0.4); }
+}
+
+#home p {
+  font-size: 20px;
+  color: #666;
+  margin: 20px 0;
+}
+
+/* LETTER PAGE */
+.letter {
+  background: linear-gradient(135deg, #fffaf0, #fff5ee);
+  padding: 50px;
+  border-radius: 20px;
+  max-width: 750px;
+  margin: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  line-height: 2;
+  font-size: 17px;
+  color: #2c2c2c;
+  border: 2px solid #f8c8dc;
+  backdrop-filter: blur(10px);
+}
+
+#typing {
+  text-align: left;
+  display: block;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.letter p:last-child {
+  margin-top: 30px;
+  font-style: italic;
+  color: #d64a73;
+}
+
+/* PHOTOS PAGE */
+.gallery {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.photo {
+  width: 160px;
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(250, 177, 160, 0.3);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 2px solid #f8c8dc;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: 0.5s;
+}
+
+.photo:hover::before {
+  left: 100%;
+}
+
+.photo:hover {
+  transform: scale(1.08) rotateZ(-2deg);
+  box-shadow: 0 12px 35px rgba(250, 177, 160, 0.5);
+}
+
+/* APPRECIATION PAGE */
+#appreciation h2 {
+  font-size: 36px;
+  color: #d64a73;
+  margin-bottom: 40px;
+  font-family: 'Dancing Script', cursive;
+}
+
+.section {
+  margin: 15px auto;
+  padding: 25px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 245, 250, 0.9));
+  border-radius: 15px;
+  font-size: 19px;
+  line-height: 1.8;
+  color: #333;
+  border: 2px solid #f8c8dc;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  max-width: 600px;
+}
+
+.section:hover {
+  transform: translateX(15px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(248, 200, 220, 0.35);
+  border-color: #ffb6c1;
+}
+
+.section:nth-child(odd) {
+  background: linear-gradient(135deg, rgba(255, 228, 225, 0.9), rgba(255, 240, 245, 0.9));
+}
+
+/* HIDDEN MESSAGE ELEMENT */
+.hidden {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 28px;
+  animation: pulse 1.5s infinite, float 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 5px rgba(255, 215, 0, 0.3));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hidden:hover {
+  transform: scale(1.4);
+  filter: drop-shadow(0 4px 10px rgba(255, 215, 0, 0.6));
+}
+
+/* MUSIC PLAYER BUTTON */
+.music {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.music button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: linear-gradient(135deg, #f8c8dc, #ffb6c1) !important;
+  box-shadow: 0 4px 20px rgba(248, 200, 220, 0.5) !important;
+}
+
+.music button:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 25px rgba(248, 200, 220, 0.7) !important;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC PLAYER - AUTOPLAY AUDIO WITH CONTROLS -->
+<div class="music">
+<!-- Audio element with autoplay muted (browsers require muted for autoplay) -->
+<audio id="song" src="./musicbg.webm" autoplay muted></audio>
+<button onclick="toggleMusic()" title="Toggle Music">🎧</button>
+</div>
+
+<!-- HOMEPAGE - WELCOME SECTION -->
+<div id="home" class="page active">
+  <h1>This is something I made for you</h1>
+  <p>Take your time :)</p>
+  <button onclick="go('letter')">Enter</button>
+</div>
+
+<!-- LETTER PAGE - TYPING ANIMATION EFFECT -->
+<div id="letter" class="page">
+  <div class="letter">
+    <!-- Typing text appears character by character -->
+    <p id="typing"></p>
+    <p>- Yours</p>
+  </div>
+  <button onclick="go('photos')">Next</button>
+</div>
+
+<!-- PHOTO GALLERY PAGE -->
+<div id="photos" class="page">
+  <h2 style="font-family: 'Dancing Script', cursive; font-size: 42px; color: #d64a73; margin-bottom: 30px;">📸 Your Beautiful Pictures (So you knoow I made it for you not stollen form github)  </h2>
+  <div class="gallery">
+    <div class="photo" style="background-image: url('./images/memory1.png');" title="Memory 1"></div>
+    <div class="photo" style="background-image: url('./images/memory2.png');" title="Memory 2"></div>
+    <div class="photo" style="background-image: url('./images/memory3.png');" title="Memory 3"></div>
+    <div class="photo" style="background-image: url('./images/memory4.png');" title="Memory 4"></div>
+    <div class="photo" style="background-image: url('./images/memory5.png');" title="Memory 5"></div>
+    <div class="photo" style="background-image: url('./images/memory6.png');" title="Memory 6"></div>
+    <div class="photo" style="background-image: url('./images/memory7.png');" title="Memory 7"></div>
+  </div>
+  <button onclick="go('appreciation')">Next</button>
+</div>
+
+<!-- APPRECIATION PAGE - HIGHLIGHTS -->
+<div id="appreciation" class="page">
+  <h2 style="font-family: 'Dancing Script', cursive; font-size: 42px; color: #d64a73; margin-bottom: 35px; text-shadow: 0 2px 8px rgba(214, 74, 115, 0.2);">✨ Things I admire about you</h2>
+  <div class="section">🌸 I admire your confidence and the way you carry yourself.</div>
+  <div class="section">🌸 I appreciate how real and unfiltered you seemed.</div>
+  <div class="section">🌸 I admire your courage to be open and expressive.</div>
+  <div class="section">🌸 I appreciate your presence</div>
+  <div class="section">🌸 I admire your beautiful smile</div>
+  <div class="section">🌸 I admire your strength</div>
+  
+  <button onclick="go('end')">Forward</button>
+</div>
+
+<!-- FINAL PAGE - CONCLUSION -->
+<div id="end" class="page">
+  <h2 style="font-family: 'Dancing Script', cursive; font-size: 40px; color: #d64a73; margin-bottom: 30px; padding: 0 20px; line-height: 1.6;">💝 I just wanted you to know this… <br> no pressure, just honesty</h2>
+  <button onclick="finalMessage()" style="margin-top: 30px;">One last thing…</button>
+  <p id="final" style="font-size: 24px; color: #d64a73; margin-top: 30px; font-weight: bold; font-family: 'Dancing Script', cursive;"></p>
+</div>
+
+<!-- HIDDEN EASTER EGG - CLICK THE STAR -->
+<div class="hidden" onclick="reveal()" title="Click me!">⭐</div>
+
+<script>
+// ========== PAGE NAVIGATION ==========
+// Switch between different pages by removing .active from all and adding to target
+function go(id){
+  try {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => {
+      if(p) p.classList.remove('active');
+    });
+    const targetPage = document.getElementById(id);
+    if(targetPage) {
+      targetPage.classList.add('active');
+      window.scrollTo(0, 0);
+      console.log('Navigated to: ' + id);
+    } else {
+      console.error('Page not found: ' + id);
+    }
+  } catch(err) {
+    console.error('Navigation error:', err);
+  }
+}
+
+// ========== TYPING ANIMATION EFFECT ==========
+// Displays text character by character for dramatic effect
+const text = "Hey Raashi,I wasn’t sure if I should write again, but I realized I’d rather be honest than stay quiet and wonder “what if.”The truth is, something about you stayed with me.It wasn’t just how you look (though I do think you’re genuinely beautiful), it was your energy the way you carried yourself, the way talking to you felt so easy and real. That’s rare for me. I don’t connect with people like that often, and I think that’s why I can’t just brush this off like it meant nothing.I’ve replayed those moments in my head more times than I’d like to admit. Not because I’m stuck in the past, but because I remember how genuinely happy I felt in that short time. And that kind of feeling is hard to ignore.I’ll be honest I didn’t handle things perfectly. Maybe I hesitated, maybe I overthought, maybe I didn’t respond the way I should have. But I’ve thought about it since, and I didn’t want to be the kind of person who lets something meaningful slip away just because of fear.So here I am, choosing to say it clearly:I like you.And I don’t want to regret not saying that.I’m not expecting anything from you. No pressure, no big expectations. If you don’t feel the same, I’ll respect that completely. But if there’s even a small part of you that would be open to talking again, I’d really like that.It doesn’t have to be anything serious  it could just be a simple conversation. Tell me about your day, something random, something that made you laugh. I’d genuinely enjoy that.And if you’d rather not reply at all, that’s okay too. I’ll still be glad that I got to meet you, even if it was brief.Either way, I hope you’re doing well and life’s been kind to you.Take care,too big of a pussy to write my name ";
+let i = 0;
+
+// Character-by-character typing function
+function type(){
+  try {
+    const typingElement = document.getElementById('typing');
+    if(typingElement && i < text.length){
+      typingElement.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, 40); // 40ms delay between characters
+    }
+  } catch(err) {
+    console.error('Typing animation error:', err);
+  }
+}
+// Start typing animation when page loads
+window.addEventListener('DOMContentLoaded', function(){
+  try {
+    type();
+  } catch(err) {
+    console.error('Error starting typing:', err);
+  }
+});
+
+// ========== MUSIC PLAYER CONTROL ==========
+// Toggle between play and pause with visual feedback
+function toggleMusic(){
+  try {
+    let song = document.getElementById('song');
+    let btn = document.querySelector('.music button');
+    if(song && btn){
+      if(song.paused){
+        song.play(); // Start playing
+        btn.style.background = 'linear-gradient(135deg, #ff69b4, #ff1493)';
+      } else {
+        song.pause(); // Pause if playing
+        btn.style.background = 'linear-gradient(135deg, #f8c8dc, #ffb6c1)';
+      }
+    }
+  } catch(err) {
+    console.error('Music toggle error:', err);
+  }
+}
+
+// Autoplay music when page loads (with user interaction requirement)
+window.addEventListener('load', function(){
+  try {
+    let song = document.getElementById('song');
+    if(song) {
+      song.muted = false; // Unmute after page loads
+      song.play().catch(e => {
+        console.log('Autoplay prevented by browser - user interaction required');
+        // Update button to show muted state
+        let btn = document.querySelector('.music button');
+        if(btn) btn.style.opacity = '0.6';
+      });
+    }
+  } catch(err) {
+    console.error('Autoplay error:', err);
+  }
+});
+
+// ========== EASTER EGG - HIDDEN MESSAGE ==========
+// Reveal secret message when clicking the star
+function reveal(){
+  try {
+    alert("If you found this, and wanna know who I am, I am not your ex nor your friend.");
+  } catch(err) {
+    console.error('Reveal error:', err);
+  }
+}
+// ========== FINAL MESSAGE REVEAL ==========
+// Show the final touching message
+function finalMessage(){
+  try {
+    const finalElement = document.getElementById('final');
+    if(finalElement){
+      finalElement.innerText = "I just liked when I was around you.";
+    }
+  } catch(err) {
+    console.error('Final message error:', err);
+  }
+}
+</script>
+
+</body>
+</html>
